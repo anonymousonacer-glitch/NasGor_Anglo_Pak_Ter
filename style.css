@@ -1,15 +1,29 @@
 body {
   background-color: #FFFFFF;
   font-family: Arial, sans-serif;
-  color: #00000;
-  }
-  .kartu-profil {
-  width:300px
-  mergin:50px
-  padding:20px
-  background-color:blue
-  border-radius:20px
-  box-shadow:0 4px 8px rgba
-  .kartu-profil img {
-    text-aligh: center;
-  }
+  color: #000000; /* Black text color */
+  margin: 0;
+  padding: 0;
+}
+
+.kartu-profil {
+  width: 300px;
+  margin: 50px auto; /* Center the card horizontally */
+  padding: 20px;
+  background-color: #007BFF; /* A nicer blue */
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  color: white; /* Make text readable on blue background */
+  text-align: center; /* Center text inside the card */
+}
+
+.kartu-profil img {
+  width: 100%;
+  max-width: 250px;
+  height: auto;
+  border-radius: 15px;
+  margin-bottom: 15px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
