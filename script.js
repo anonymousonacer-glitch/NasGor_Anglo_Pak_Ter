@@ -1,161 +1,130 @@
-// Put this at the top of script.js instead of the fetch call
-const menuItems = [
-    {
-      "id": 1,
-      "name": "Margherita Pizza",
-      "description": "Classic pizza with tomato sauce, fresh mozzarella, and basil.",
-      "price": 12.99,
-      "image": "https://images.unsplash.com/photo-1604068549290-dea0e4a305ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
-    },
-    // ... rest of your menu items
-];
+// Enhanced script with better error handling
+console.log("✅ Script.js is loaded!");
 
-// Then call this instead of the fetch
-displayMenuItems(menuItems);* Basic Reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+let cart = [];
+let menuItems = [];
+
+const menuContainer = document.getElementById('menu-container');
+const cartItemsElement = document.getElementById('cart-items');
+const totalAmountElement = document.getElementById('total-amount');
+const checkoutButton = document.getElementById('checkout-btn');
+const emptyCartMessage = document.getElementById('empty-cart-message');
+
+// Check if elements exist
+console.log("Menu container found:", menuContainer);
+console.log("Cart items element found:", cartItemsElement);
+
+// Test if JSON file exists
+fetch('menu.json')
+    .then(response => {
+        console.log("📡 Fetch response status:", response.status);
+        console.log("📡 Fetch response ok:", response.ok);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log("✅ JSON data loaded successfully:", data);
+        if (data.menu && data.menu.length > 0) {
+            menuItems = data.menu;
+            console.log(`📋 Found ${menuItems.length} menu items`);
+            displayMenuItems(menuItems);
+        } else {
+            throw new Error("Menu data is empty or invalid");
+        }
+    })
+    .catch(error => {
+        console.error('❌ Error loading menu:', error);
+        // Show error message to user
+        menuContainer.innerHTML = `
+            <div style="text-align: center; padding: 2rem; color: red;">
+                <h3>Error loading menu</h3>
+                <p>${error.message}</p>
+                <p>Check the browser console for details.</p>
+            </div>
+        `;
+    });
+
+function displayMenuItems(items) {
+    console.log("🖼️ Displaying menu items...");
+    menuContainer.innerHTML = '';
+    
+    items.forEach(item => {
+        console.log("Creating element for:", item.name);
+        const menuItemElement = document.createElement('div');
+        menuItemElement.classList.add('menu-item');
+        menuItemElement.innerHTML = `
+            <img src="${item.image}" alt="${item.name}" onerror="console.error('Failed to load image: ${item.image}')">
+            <div class="item-details">
+                <h3>${item.name}</h3>
+                <p>${item.description}</p>
+                <div class="item-price">
+                    <span class="price">$${item.price.toFixed(2)}</span>
+                    <button class="add-to-cart" data-id="${item.id}">Add to Cart</button>
+                </div>
+            </div>
+        `;
+        menuContainer.appendChild(menuItemElement);
+    });
+
+    // Add event listeners
+    document.querySelectorAll('.add-to-cart').forEach(button => {
+        button.addEventListener('click', (event) => {
+            const itemId = parseInt(event.target.getAttribute('data-id'));
+            console.log("🛒 Adding to cart, item ID:", itemId);
+            addToCart(itemId);
+        });
+    });
+    
+    console.log("✅ Menu items displayed");
 }
 
-body {
-    background-color: #f8f8f8;
-    color: #333;
-    line-height: 1.6;
+function addToCart(itemId) {
+    const itemToAdd = menuItems.find(item => item.id === itemId);
+    if (itemToAdd) {
+        const existingItem = cart.find(item => item.id === itemId);
+        if (existingItem) {
+            existingItem.quantity += 1;
+        } else {
+            cart.push({ ...itemToAdd, quantity: 1 });
+        }
+        updateCartDisplay();
+    }
 }
 
-header {
-    background: linear-gradient(to right, #ff7e5f, #feb47b);
-    color: white;
-    text-align: center;
-    padding: 2rem 0;
-    margin-bottom: 2rem;
+function updateCartDisplay() {
+    cartItemsElement.innerHTML = '';
+
+    if (cart.length === 0) {
+        emptyCartMessage.style.display = 'block';
+        checkoutButton.disabled = true;
+    } else {
+        emptyCartMessage.style.display = 'none';
+        checkoutButton.disabled = false;
+
+        cart.forEach(item => {
+            const cartItemElement = document.createElement('div');
+            cartItemElement.classList.add('cart-item');
+            cartItemElement.innerHTML = `
+                <span>${item.name} (x${item.quantity})</span>
+                <span>$${(item.price * item.quantity).toFixed(2)}</span>
+            `;
+            cartItemsElement.appendChild(cartItemElement);
+        });
+    }
+
+    const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    totalAmountElement.textContent = total.toFixed(2);
 }
 
-header h1 {
-    font-size: 2.5rem;
-}
+checkoutButton.addEventListener('click', () => {
+    if (cart.length > 0) {
+        alert(`Thank you for your order! Your total is $${totalAmountElement.textContent}.`);
+        cart = [];
+        updateCartDisplay();
+    }
+});
 
-/* Menu Grid Layout */
-.menu-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 2rem;
-    padding: 0 2rem;
-    margin-bottom: 3rem;
-}
-
-.menu-item {
-    background: white;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-}
-
-.menu-item:hover {
-    transform: translateY(-5px);
-}
-
-.menu-item img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-}
-
-.item-details {
-    padding: 1.5rem;
-}
-
-.item-details h3 {
-    margin-bottom: 0.5rem;
-    color: #555;
-}
-
-.item-details p {
-    margin-bottom: 1rem;
-    color: #777;
-    font-size: 0.9rem;
-}
-
-.item-price {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.price {
-    font-weight: bold;
-    color: #ff7e5f;
-    font-size: 1.2rem;
-}
-
-.add-to-cart {
-    background-color: #ff7e5f;
-    color: white;
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.add-to-cart:hover {
-    background-color: #e06a50;
-}
-
-/* Order Cart */
-#order-cart {
-    background: white;
-    margin: 0 2rem;
-    padding: 1.5rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    position: sticky;
-    bottom: 2rem;
-}
-
-#cart-items {
-    margin-bottom: 1rem;
-    min-height: 50px;
-}
-
-.cart-item {
-    display: flex;
-    justify-content: space-between;
-    padding: 0.5rem 0;
-    border-bottom: 1px solid #eee;
-}
-
-#empty-cart-message {
-    color: #999;
-    font-style: italic;
-}
-
-#cart-total {
-    text-align: right;
-    font-size: 1.2rem;
-    margin-bottom: 1rem;
-}
-
-#checkout-btn {
-    width: 100%;
-    padding: 1rem;
-    background-color: #28a745;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 1.1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-#checkout-btn:hover {
-    background-color: #218838;
-}
-
-#checkout-btn:disabled {
-    background-color: #6c757d;
-    cursor: not-allowed;
-}
+updateCartDisplay();
+console.log("🎯 Script initialization complete");
