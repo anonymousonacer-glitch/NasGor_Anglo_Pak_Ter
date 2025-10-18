@@ -1,7 +1,7 @@
 class WarungApp {
     constructor() {
         this.selectedItems = [];
-        this.phoneNumber = '+62 812-3345-9494';
+        this.phoneNumber = '6281233459494';
         this.init();
     }
 
