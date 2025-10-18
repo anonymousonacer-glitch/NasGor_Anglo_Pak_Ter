@@ -31,10 +31,10 @@ class WarungApp {
         const existingItem = this.selectedItems.find(item => item.name === itemName);
         
         if (existingItem) {
-            // Remove item if already selected
+            
             this.selectedItems = this.selectedItems.filter(item => item.name !== itemName);
         } else {
-            // Add item with quantity 1
+            
             this.selectedItems.push({
                 name: itemName,
                 price: itemPrice,
@@ -81,7 +81,7 @@ class WarungApp {
         
         totalAmount.textContent = total.toLocaleString();
         
-        // Add event listeners for quantity buttons
+        
         this.setupQuantityButtons();
     }
 
@@ -107,7 +107,7 @@ class WarungApp {
             item.quantity += change;
             if (item.quantity <= 0) {
                 this.selectedItems = this.selectedItems.filter(i => i.name !== itemName);
-                // Also remove selection from menu
+                
                 const menuCards = document.querySelectorAll('.menu-selection .menu-item');
                 menuCards.forEach(card => {
                     if (card.querySelector('span:first-child').textContent === itemName) {
@@ -144,11 +144,11 @@ class WarungApp {
             return;
         }
         
-        let message = `Halo, saya ingin memesan dari Nasi Goreng Anglo "Pak Ter":\n\n`;
-        message += `📋 *Detail Pemesan:*\n`;
+        let message = `saya ingin memesan:\n\n`;
+        message += ` *Detail Pemesan:*\n`;
         message += `Nama: ${customerName}\n`;
         message += `Alamat: ${customerAddress}\n\n`;
-        message += `🍽️ *Pesanan:*\n`;
+        message += ` *Pesanan:*\n`;
         
         let total = 0;
         this.selectedItems.forEach(item => {
@@ -157,24 +157,24 @@ class WarungApp {
             message += `• ${item.name} (${item.quantity}x) - Rp ${itemTotal.toLocaleString()}\n`;
         });
         
-        message += `\n💰 *Total: Rp ${total.toLocaleString()}*\n\n`;
+        message += `\n *Total: Rp ${total.toLocaleString()}*\n\n`;
         message += `Terima kasih!`;
         
-        // Encode message for URL
+        
         const encodedMessage = encodeURIComponent(message);
         const whatsappURL = `https://wa.me/${this.phoneNumber}?text=${encodedMessage}`;
         
-        // Open WhatsApp in new tab
+        
         window.open(whatsappURL, '_blank');
     }
 }
 
-// Initialize the app when DOM is loaded
+
 document.addEventListener('DOMContentLoaded', () => {
     new WarungApp();
 });
 
-// Smooth scrolling for navigation links
+
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
