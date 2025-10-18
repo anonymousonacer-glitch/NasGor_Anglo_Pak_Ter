@@ -1,38 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tasty Bites - Order Food</title>
+    <title>Nasi Goreng "Pak Ter" - Order Online</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <h1>Nasi Goreng Anglo "Pak Ter"</h1>
+        <h1>🍚 Nasi Goreng "Pak Ter"</h1>
         <p>Order your favorite food online!</p>
     </header>
 
     <main>
-        <!-- Menu items will be dynamically inserted here by JavaScript -->
+        <!-- Menu Section -->
         <section id="menu-container" class="menu-grid">
-            <!-- JavaScript populates this -->
+            <!-- Menu items will be inserted here by JavaScript -->
+            <div style="text-align: center; padding: 2rem; color: #666;">
+                <p>Loading menu...</p>
+            </div>
         </section>
 
         <!-- Order Cart -->
         <section id="order-cart">
-            <h2>Pesananmu</h2>
+            <h2>Pesanammu</h2>
             <div id="cart-items">
-                <!-- Cart items will be added here -->
                 <p id="empty-cart-message">Your cart is empty.</p>
             </div>
             <div id="cart-total">
-                <strong>Total: $<span id="total-amount">0.00</span></strong>
+                <strong>Total: Rp <span id="total-amount">0</span></strong>
             </div>
-            <button id="checkout-btn">Checkout</button>
+            <button id="checkout-btn" disabled>Checkout</button>
         </section>
     </main>
 
-    <!-- Link to the JavaScript file -->
     <script src="script.js"></script>
 </body>
 </html>
