@@ -1,4 +1,17 @@
-/* Basic Reset */
+// Put this at the top of script.js instead of the fetch call
+const menuItems = [
+    {
+      "id": 1,
+      "name": "Margherita Pizza",
+      "description": "Classic pizza with tomato sauce, fresh mozzarella, and basil.",
+      "price": 12.99,
+      "image": "https://images.unsplash.com/photo-1604068549290-dea0e4a305ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+    },
+    // ... rest of your menu items
+];
+
+// Then call this instead of the fetch
+displayMenuItems(menuItems);* Basic Reset */
 * {
     margin: 0;
     padding: 0;
