@@ -1,25 +1,38 @@
-<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <title>AOA STORE - Profil Digital</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tasty Bites - Order Food</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="image-container">
-    <img src="1.png" alt="Product Image">
-  </div>
+    <header>
+        <h1>🍕 Tasty Bites</h1>
+        <p>Order your favorite food online!</p>
+    </header>
 
-  <h1>M Firdaus H</h1>
-  <p>SMKN 1 Purwoasri
-  aku bangga</p>
-  <a href="https://www.youtube.com/watch?v=xvFZjo5PgG0" target="_blank">Join Us</a>
+    <main>
+        <!-- Menu items will be dynamically inserted here by JavaScript -->
+        <section id="menu-container" class="menu-grid">
+            <!-- JavaScript populates this -->
+        </section>
 
-  <button id="SapaButton">Sapa Saya</button>
+        <!-- Order Cart -->
+        <section id="order-cart">
+            <h2>Your Order</h2>
+            <div id="cart-items">
+                <!-- Cart items will be added here -->
+                <p id="empty-cart-message">Your cart is empty.</p>
+            </div>
+            <div id="cart-total">
+                <strong>Total: $<span id="total-amount">0.00</span></strong>
+            </div>
+            <button id="checkout-btn">Checkout</button>
+        </section>
+    </main>
 
-  <script>
-    document.getElementById("SapaButton").addEventListener("click", function() {
-      alert("Halo, saya M Firdaus H dari SMKN 1 Purwoasri!");
-    });
-  </script>
+    <!-- Link to the JavaScript file -->
+    <script src="script.js"></script>
 </body>
 </html>
