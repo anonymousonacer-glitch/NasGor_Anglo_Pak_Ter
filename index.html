@@ -3,36 +3,130 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nasi Goreng "Pak Ter" - Order Online</title>
+    <title>Nasi Goreng Anglo "Pak Ter"</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
-        <h1>🍚 Nasi Goreng "Pak Ter"</h1>
-        <p>Order your favorite food online!</p>
+        <nav class="navbar">
+            <div class="nav-container">
+                <h1 class="logo">Nasi Goreng Anglo "Pak Ter"</h1>
+                <ul class="nav-menu">
+                    <li><a href="#home">Beranda</a></li>
+                    <li><a href="#menu">Menu</a></li>
+                    <li><a href="#pesan">Pesan</a></li>
+                </ul>
+            </div>
+        </nav>
     </header>
 
     <main>
-        <!-- Menu Section -->
-        <section id="menu-container" class="menu-grid">
-            <!-- Menu items will be inserted here by JavaScript -->
-            <div style="text-align: center; padding: 2rem; color: #666;">
-                <p>Loading menu...</p>
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h2>Selamat Datang di Warung Kami</h2>
+                <p>Nikmati kelezatan nasi goreng dengan resep tradisional yang autentik</p>
             </div>
         </section>
 
-        <!-- Order Cart -->
-        <section id="order-cart">
-            <h2>Pesanammu</h2>
-            <div id="cart-items">
-                <p id="empty-cart-message">Your cart is empty.</p>
+        <section id="menu" class="menu-section">
+            <div class="container">
+                <h2>Menu Kami</h2>
+                
+                <div class="menu-category">
+                    <h3>🍽️ Makanan</h3>
+                    <div class="menu-items">
+                        <div class="menu-item" data-name="Nasi Goreng" data-price="15000">
+                            <span>Nasi Goreng</span>
+                            <span>Rp 15.000</span>
+                        </div>
+                        <div class="menu-item" data-name="Nasi Mawut" data-price="16000">
+                            <span>Nasi Mawut</span>
+                            <span>Rp 16.000</span>
+                        </div>
+                        <div class="menu-item" data-name="Mie Goreng" data-price="14000">
+                            <span>Mie Goreng</span>
+                            <span>Rp 14.000</span>
+                        </div>
+                        <div class="menu-item" data-name="Mie Godok" data-price="14000">
+                            <span>Mie Godok</span>
+                            <span>Rp 14.000</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-category">
+                    <h3>🥤 Minuman</h3>
+                    <div class="menu-items">
+                        <div class="menu-item" data-name="Teh" data-price="5000">
+                            <span>Teh</span>
+                            <span>Rp 5.000</span>
+                        </div>
+                        <div class="menu-item" data-name="Jeruk" data-price="6000">
+                            <span>Jeruk</span>
+                            <span>Rp 6.000</span>
+                        </div>
+                        <div class="menu-item" data-name="Kopi" data-price="7000">
+                            <span>Kopi</span>
+                            <span>Rp 7.000</span>
+                        </div>
+                        <div class="menu-item" data-name="Es Kopyor" data-price="12000">
+                            <span>Es Kopyor</span>
+                            <span>Rp 12.000</span>
+                        </div>
+                        <div class="menu-item" data-name="Es Garbis" data-price="8000">
+                            <span>Es Garbis</span>
+                            <span>Rp 8.000</span>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div id="cart-total">
-                <strong>Total: Rp <span id="total-amount">0</span></strong>
+        </section>
+
+        <section id="pesan" class="order-section">
+            <div class="container">
+                <h2>Pesan Sekarang</h2>
+                <div class="order-form">
+                    <div class="form-group">
+                        <label for="customerName">Nama Pemesan:</label>
+                        <input type="text" id="customerName" placeholder="Masukkan nama Anda">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="customerAddress">Alamat Pengiriman:</label>
+                        <textarea id="customerAddress" placeholder="Masukkan alamat lengkap pengiriman" rows="3"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Pilih Menu:</label>
+                        <div class="menu-selection">
+                            <!-- Menu items will be populated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <div class="order-summary">
+                        <h3>Pesanan Anda:</h3>
+                        <div id="orderItems" class="order-items">
+                            <p class="empty-message">Belum ada pesanan</p>
+                        </div>
+                        <div class="total-price">
+                            <strong>Total: Rp <span id="totalAmount">0</span></strong>
+                        </div>
+                    </div>
+
+                    <button id="whatsappOrder" class="whatsapp-btn">
+                        💬 Pesan via WhatsApp
+                    </button>
+                </div>
             </div>
-            <button id="checkout-btn" disabled>Checkout</button>
         </section>
     </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Nasi Goreng Anglo "Pak Ter". Hubungi: 0812-3345-9494</p>
+        </div>
+    </footer>
 
     <script src="script.js"></script>
 </body>
