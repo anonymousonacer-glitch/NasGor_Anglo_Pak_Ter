@@ -63,7 +63,7 @@ body {
 /* Hero Section */
 .hero {
     background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
-                url('bg1.jpg') center/cover no-repeat;
+                url('Bg1.jpg') center/cover no-repeat;
     background-size: cover;
     background-position: center;
     height: 70vh;
@@ -150,7 +150,6 @@ body {
     font-weight: 700;
 }
 
-/* Order Section */
 .order-section {
     padding: 4rem 0;
     background: #f8f9fa;
