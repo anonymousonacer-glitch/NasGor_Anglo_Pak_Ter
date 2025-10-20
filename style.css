@@ -17,6 +17,7 @@ body {
     padding: 0 20px;
 }
 
+/* Navbar */
 .navbar {
     background: rgba(211, 84, 0, 0.95);
     backdrop-filter: blur(10px);
@@ -62,8 +63,9 @@ body {
     background: rgba(255,255,255,0.2);
 }
 
+/* Hero Section dengan Background Image */
 .hero {
-    background-color: #d35400;
+    background-color: #d35400; /* Fallback color */
     background: 
         linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.6)),
         url('Bg1.jpg') center/cover no-repeat,
@@ -92,6 +94,7 @@ body {
     font-weight: 400;
 }
 
+/* Menu Section */
 .menu-section {
     padding: 4rem 0;
     background: white;
@@ -154,6 +157,7 @@ body {
     font-weight: 700;
 }
 
+/* Order Section */
 .order-section {
     padding: 4rem 0;
     background: #f8f9fa;
@@ -302,6 +306,7 @@ body {
     box-shadow: none;
 }
 
+/* Footer */
 footer {
     background: #333;
     color: white;
@@ -309,6 +314,7 @@ footer {
     padding: 2rem 0;
 }
 
+/* Responsive Design */
 @media (max-width: 768px) {
     .nav-container {
         flex-direction: column;
