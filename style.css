@@ -73,6 +73,7 @@ body {
     text-align: center;
     color: white;
     margin-top: 60px;
+    position: relative;
 }
 
 .hero-content h2 {
