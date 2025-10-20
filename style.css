@@ -62,7 +62,6 @@ body {
     background: rgba(255,255,255,0.2);
 }
 
-/* Hero Section dengan Background Image dari Root 
 .hero {
     background-color: #d35400;
     background: 
@@ -195,6 +194,7 @@ body {
     border-radius: 8px;
     font-size: 1rem;
     transition: border-color 0.3s;
+    font-family: 'Poppins', sans-serif;
 }
 
 .form-group input:focus,
@@ -229,6 +229,8 @@ body {
 .empty-message {
     color: #999;
     font-style: italic;
+    text-align: center;
+    padding: 1rem;
 }
 
 .order-item {
@@ -258,6 +260,11 @@ body {
     border-radius: 50%;
     cursor: pointer;
     font-weight: bold;
+    transition: background 0.3s;
+}
+
+.quantity-btn:hover {
+    background: #e67e22;
 }
 
 .total-price {
@@ -279,12 +286,20 @@ body {
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
+    font-family: 'Poppins', sans-serif;
 }
 
 .whatsapp-btn:hover {
     background: #128C7E;
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+}
+
+.whatsapp-btn:disabled {
+    background: #cccccc;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
 }
 
 footer {
@@ -322,5 +337,30 @@ footer {
 
     .order-form {
         padding: 1rem;
+        margin: 0 1rem;
+    }
+    
+    .menu-section h2,
+    .order-section h2 {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        font-size: 1.2rem;
+    }
+    
+    .nav-menu {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .hero {
+        height: 50vh;
+    }
+    
+    .hero-content h2 {
+        font-size: 1.8rem;
     }
 }
